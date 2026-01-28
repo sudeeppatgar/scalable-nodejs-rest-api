@@ -1,0 +1,23 @@
+{
+  "name": "scalable-nodejs-rest-api",
+  "version": "1.0.0",
+  "description": "Production-ready Node.js REST API demonstrating clean architecture, JWT authentication with refresh tokens, Redis session management, and scalable backend design.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sudeeppatgar/scalable-nodejs-rest-api.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sudeeppatgar/scalable-nodejs-rest-api/issues"
+  },
+  "homepage": "https://github.com/sudeeppatgar/scalable-nodejs-rest-api#readme",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
