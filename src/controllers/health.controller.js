@@ -1,6 +1,6 @@
 import ApiResponse from '../utils/ApiResponse.js';
 import asyncHandler from '../utils/asyncHandler.js';
-import db from '../config/db.js';
+import mongoose from 'mongoose';
 import redisClient from '../config/redis.js';
 
 /**
@@ -14,7 +14,7 @@ const healthCheck = asyncHandler(async (req, res) => {
     uptime: process.uptime(),
     environment: process.env.NODE_ENV || 'development',
     services: {
-      database: db.isConnected() ? 'connected' : 'disconnected',
+      database: mongoose.connection.readyState === 1 ? 'connected' : 'disconnected',
       redis: redisClient.isConnected() ? 'connected' : 'disconnected',
     },
   };
@@ -31,4 +31,3 @@ const healthCheck = asyncHandler(async (req, res) => {
 });
 
 export { healthCheck };
-

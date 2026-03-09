@@ -51,16 +51,12 @@ This repository is a learning-focused backend project to practice how a scalable
 
 - `src/config/env.js`: loads and validates environment variables.
 - `src/config/redis.js`: Redis client wrapper (`connect`, `disconnect`, `isConnected`).
-- `src/config/db.js`: class-based MongoDB wrapper (used by health controller).
-- `src/config/database/database.contract.js`: contract shape for DB adapters.
-- `src/config/database/mongo.database.js`: factory-based MongoDB adapter for server lifecycle.
-- `src/config/database/index.js`: exports DB factory + contract.
+- `src/config/database/mongo.database.js`: MongoDB adapter used by server lifecycle.
+- `src/config/database/index.js`: exports database adapter factory.
 
 ### Loaders
 
 - `src/loaders/express.loader.js`: installs security, parsers, logging, routes, 404, error middleware.
-- `src/loaders/mongo.loader.js`: Mongo loader helper (not used by current bootstrap).
-- `src/loaders/redis.loader.js`: Redis loader helper (not used by current bootstrap).
 
 ### Routes
 
@@ -184,7 +180,7 @@ node src/index.js
 
 ## Note for Learners
 
-This codebase contains a couple of intentionally imperfect/transition pieces (for learning/refactoring practice), such as mixed database wrapper styles, script/entrypoint mismatch in `package.json`, and an import path typo in `src/index.js` (`./entities/database/index.js` should align with `src/config/database/index.js`). You can treat these as refactoring exercises.
+This codebase is learning-focused and still a good place to practice refactoring and adding tests as you evolve the architecture.
 
 ## License
 

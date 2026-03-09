@@ -1,6 +1,6 @@
 import createApp from "./app/app.js";
 import config from "./config/env.js";
-import { createMongoDatabase } from "./entities/database/index.js";
+import { createMongoDatabase } from "./config/database/index.js";
 import redisClient from "./config/redis.js";
 import { createServer } from "./app/server.js";
 
