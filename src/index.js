@@ -16,24 +16,33 @@ const bootstrap = async () => {
     env: config.env,
   });
 
-  const shutdown = async (signal) => {
+  let shuttingDown = false;
+
+  const shutdown = async (signal, exitCode = 0, err = null) => {
+    if (shuttingDown) return;
+    shuttingDown = true;
+
+    if (err) {
+      console.error(`❌ ${signal}:`, err);
+    }
+
     try {
       await server.stop(signal);
-      process.exit(0);
-    } catch (err) {
-      console.error("❌ Shutdown failed:", err);
+      process.exit(exitCode);
+    } catch (shutdownErr) {
+      console.error("❌ Shutdown failed:", shutdownErr);
       process.exit(1);
     }
   };
 
-  ["SIGINT", "SIGTERM", "unhandledRejection", "uncaughtException"].forEach(
-    (event) => process.on(event, shutdown),
+  process.on("SIGINT", () => shutdown("SIGINT", 0));
+  process.on("SIGTERM", () => shutdown("SIGTERM", 0));
+  process.on("unhandledRejection", (reason) =>
+    shutdown("unhandledRejection", 1, reason),
   );
-
-  //   process.on("SIGINT", shutdown);
-  // process.on("SIGTERM", shutdown);
-  // process.on("unhandledRejection", shutdown);
-  // process.on("uncaughtException", shutdown);
+  process.on("uncaughtException", (err) =>
+    shutdown("uncaughtException", 1, err),
+  );
 
   await server.start();
 };
