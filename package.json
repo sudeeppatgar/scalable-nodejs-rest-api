@@ -9,7 +9,8 @@
     "dev": "nodemon src/index.js",
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
     "lint": "eslint src/ tests/",
-    "lint:fix": "eslint src/ tests/ --fix"
+    "lint:fix": "eslint src/ tests/ --fix",
+    "build": "node scripts/build-syntax-check.js"
   },
   "keywords": [
     "nodejs",
