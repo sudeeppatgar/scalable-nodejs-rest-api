@@ -1,7 +1,8 @@
 import User from '../models/user.model.js';
 import Activity from '../models/activity.model.js';
+import redisClient from '../config/redis.js';
 import ApiError from '../utils/ApiError.js';
-import { ERROR_MESSAGES } from '../utils/constants.js';
+import { ERROR_MESSAGES, REDIS_KEYS } from '../utils/constants.js';
 
 /**
  * User Service
@@ -113,6 +114,12 @@ class UserService {
     // Update password
     user.password = newPassword;
     await user.save();
+
+    // Revoke all refresh tokens so other sessions must re-authenticate
+    if (redisClient.isConnected()) {
+      const refreshKey = REDIS_KEYS.REFRESH_TOKEN(userId);
+      await redisClient.getClient().del(refreshKey);
+    }
 
     // Log activity
     try {
