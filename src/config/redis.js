@@ -49,9 +49,7 @@ class RedisClient {
 
       await this.client.connect();
 
-      // Graceful shutdown
-      process.on('SIGINT', this.disconnect.bind(this));
-      process.on('SIGTERM', this.disconnect.bind(this));
+      // Graceful shutdown is owned by index.js via server.stop()
     } catch (error) {
       console.error('❌ Redis connection failed:', error);
       throw error;

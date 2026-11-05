@@ -29,9 +29,7 @@ export const createMongoDatabase = () => {
         connected = false;
         console.warn("⚠️ MongoDB disconnected");
       });
-      ["SIGINT", "SIGTERM"].forEach((signal) => process.on(signal, disconnect));
-      // process.on("SIGINT", disconnect);
-      // process.on("SIGTERM", disconnect);
+      // Graceful shutdown is owned by index.js via server.stop()
     } catch (error) {
       console.error("❌ MongoDB connection failed:", error);
       throw error;
