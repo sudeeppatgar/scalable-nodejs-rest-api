@@ -1,0 +1,15 @@
+# Copy this file to .github/workflows/ci.yml in a Node.js project.
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  test:
+    uses: sudeeppatgar/forgeflow/.github/workflows/reusable-node-ci.yml@main
+    with:
+      node-version: '22'
+      run-audit: true
