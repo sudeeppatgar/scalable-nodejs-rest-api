@@ -12,6 +12,9 @@ const router = express.Router();
 
 /**
  * Authentication Routes
+ *
+ * authLimiter counts only failed requests (skipSuccessfulRequests),
+ * so it works for both login and refresh token brute-force protection.
  */
 
 // Register - POST /api/auth/register
@@ -67,6 +70,7 @@ router.post(
 // Refresh Token - POST /api/auth/refresh
 router.post(
   '/refresh',
+  authLimiter,
   [
     body('refreshToken')
       .notEmpty()
