@@ -12,7 +12,7 @@ const router = express.Router();
  * All routes require authentication
  */
 router.use(authenticate);
-router.use(apiLimiter);
+router.use(apiLimiter());
 
 // Get current user profile - GET /api/users/me
 router.get('/me', userController.getProfile);
