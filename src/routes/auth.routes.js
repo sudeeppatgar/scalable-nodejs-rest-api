@@ -20,7 +20,7 @@ const router = express.Router();
 // Register - POST /api/auth/register
 router.post(
   '/register',
-  registerLimiter,
+  registerLimiter(),
   [
     body('name')
       .trim()
@@ -50,7 +50,7 @@ router.post(
 // Login - POST /api/auth/login
 router.post(
   '/login',
-  authLimiter,
+  authLimiter(),
   [
     body('email')
       .trim()
@@ -70,7 +70,7 @@ router.post(
 // Refresh Token - POST /api/auth/refresh
 router.post(
   '/refresh',
-  authLimiter,
+  authLimiter(),
   [
     body('refreshToken')
       .notEmpty()

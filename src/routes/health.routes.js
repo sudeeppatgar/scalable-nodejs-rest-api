@@ -8,7 +8,7 @@ const router = express.Router();
  * Health Check Routes
  * No authentication required
  */
-router.get('/health', apiLimiter, healthCheck);
+router.get('/health', apiLimiter(), healthCheck);
 
 export default router;
 

@@ -15,7 +15,7 @@ const router = express.Router();
  */
 router.use(authenticate);
 router.use(adminOnly);
-router.use(apiLimiter);
+router.use(apiLimiter());
 
 // Get all users - GET /api/admin/users
 router.get(
