@@ -7,7 +7,12 @@ import {
   verifyRefreshToken,
 } from '../utils/token.js';
 import ApiError from '../utils/ApiError.js';
-import { REDIS_KEYS, ERROR_MESSAGES, SUCCESS_MESSAGES } from '../utils/constants.js';
+import {
+  REDIS_KEYS,
+  ERROR_MESSAGES,
+  SUCCESS_MESSAGES,
+  USER_STATUS,
+} from '../utils/constants.js';
 
 /**
  * Authentication Service
@@ -96,6 +101,11 @@ class AuthService {
 
     if (!user) {
       throw ApiError.unauthorized(ERROR_MESSAGES.INVALID_CREDENTIALS);
+    }
+
+    // Block login for inactive or suspended accounts
+    if (user.status !== USER_STATUS.ACTIVE) {
+      throw ApiError.forbidden('Account is not active');
     }
 
     // Verify password
