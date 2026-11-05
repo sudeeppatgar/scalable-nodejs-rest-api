@@ -14,7 +14,6 @@ import {
   errorHandler,
   notFoundHandler,
 } from "../middlewares/error.middleware.js";
-import { apiLimiter } from "../middlewares/rateLimit.middleware.js";
 
 /**
  * Express Loader

@@ -10,7 +10,6 @@ import ApiError from '../utils/ApiError.js';
 import {
   REDIS_KEYS,
   ERROR_MESSAGES,
-  SUCCESS_MESSAGES,
   USER_STATUS,
 } from '../utils/constants.js';
 
