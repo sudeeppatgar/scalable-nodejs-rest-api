@@ -112,6 +112,10 @@ This repository is a learning-focused backend project to practice how a scalable
 
 ### Health
 
+> Visiting the root URL `https://scalable-nodejs-rest-api.onrender.com/` in a browser returns a friendly "API is running" message with pointers to `/health` and `/api`.
+> Unmatched paths still return the standard 404 error shape.
+
+- `GET /` — API info message
 - `GET /health`
 
 ### Authentication
