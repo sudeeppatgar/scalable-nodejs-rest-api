@@ -196,4 +196,4 @@ This codebase is learning-focused and still a good place to practice refactoring
 
 ## License
 
-ISC
+MIT — see [LICENSE](./LICENSE).
