@@ -2,6 +2,14 @@
 
 This repository is a learning-focused backend project to practice how a scalable Node.js REST API is structured with Express, MongoDB, Redis, JWT auth, RBAC, and clean layering.
 
+**Live (deployed on Render):** https://scalable-nodejs-rest-api.onrender.com
+
+- Health check: https://scalable-nodejs-rest-api.onrender.com/health
+- API base URL: https://scalable-nodejs-rest-api.onrender.com/api
+- CI/CD: GitHub Actions (`ci.yml`) runs lint + tests on every PR/push to `main`, then triggers a Render deploy via deploy hook on green `main` builds
+
+> Free-tier note: the service sleeps after ~15 minutes of inactivity; the first request may take 30-60 seconds to wake it up.
+
 ## What This Project Teaches
 
 - How to separate API code into route -> controller -> service -> model layers.
