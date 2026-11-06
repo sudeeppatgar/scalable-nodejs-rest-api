@@ -1,0 +1,21 @@
+# Copy this file to .github/workflows/deploy.yml in the backend repository.
+name: Backend CI and Render deployment
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  ci:
+    uses: sudeeppatgar/forgeflow/.github/workflows/reusable-node-ci.yml@main
+    with:
+      node-version: '22'
+
+  deploy:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: ci
+    uses: sudeeppatgar/forgeflow/.github/workflows/reusable-render-deploy.yml@main
+    secrets:
+      RENDER_DEPLOY_HOOK_URL: ${{ secrets.RENDER_DEPLOY_HOOK_URL }}
